@@ -400,7 +400,6 @@ Note to Self:
 
    * ayni imajdan sonsuz container olusturabiliriz. A containerrinda imajda yapilan bir degisiklik, o imajdan olusturulan B containerini etkilemez. Her konteiner bagimsizdir. Isoledir.
 
-   * Docker Katmanli Dosya Sistemi Yapisi
      - 
 
    Commands:
@@ -424,6 +423,26 @@ Note to Self:
    * docker container start websunucu
 
    * docker container stop websunucu
+
+3.  * Docker Katmanli Dosya Sistemi Yapisi
+     - docker depolama altyapisinda union file system kullanir. Her degisiklik ayri bir katmanda depolanir. 
+
+     - Bu katmanlarin bir araya gelerek olusturduklari da image olur.
+
+     - bir image dan container olusturulurken, docker bu imaji R/O read only olarak tutar. Ustune bir katman daha ekler. Bu katmana Container yazilabilir katmani (R/W) denir. Containerdaki tum degisiklikler bu yazilabilir katmanda olur. Image de degisiklik olmaz R/o olarak kalir.
+
+     - Dosyalarin ayri katmanlarda olmasina ragmen bir arada gormemizi saglayan union file systemdir. ls yaptigimizda ayni yerdedir.
+
+     - (Copy on Write) Image icindeki R/O layerdan birini degistirmek istersek, R/O katmandaki file i R/W katmanina kopyalayip degisikligi burda yaparak islemi gerceklestirir.
+
+     - farkli imagelerde ortak layerlar tekrar indirilmez, o layerlar birbirine map edilerek kullanilir.
+
+    * Command:
+       - docker container prune
+       - docker image ls
+       - docker image prune -a (-a all)
+       - docker image pull alpine (tek katman)
+       - docker image pull ozgurozturnet/hello-app (iki katman)
 
 
 
