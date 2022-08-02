@@ -392,4 +392,40 @@ Note to Self:
 
    * docker container rm 07 aa 50 eb 07
 
+2. Container Temelleri-3
+   
+   * Imajlar ideal olarak tek uygulama calistirilacak sekilde dizayn edilmesi ve imaj asamasinda tamamlanmasi gerekir.
+
+   * Container in icinde birden fazla uygulama calisabilir. Sadece conteiner run edilirken biz sadece bir uygulamanin calismasini isaret edebiliriz. 
+
+   * ayni imajdan sonsuz container olusturabiliriz. A containerrinda imajda yapilan bir degisiklik, o imajdan olusturulan B containerini etkilemez. Her konteiner bagimsizdir. Isoledir.
+
+   * Docker Katmanli Dosya Sistemi Yapisi
+     - 
+
+   Commands:
+
+   * docker container run --name websunucu -p 80:80 -d ozgurozturknet/adanzyedocker
+
+   * docker container exec -it 00 sh (calisan contianerin icine girme, baglanma)
+
+   * java app1.java  ( container icinde baska bir uygulama calistirabildik)
+
+   * ps (containera bagliyken icinde calisan tum uygulamalari gösterir)
+
+   * exit (containerdan cikar shelle geliriz ama arka planda container exited dir stop eder.)
+
+   * container ps
+
+   * ctrl + d +a (containerdan cikariz ama container arka planda calisir)
+
+   * kill 1 ( containerin icinde 1 nolu calisan uygulama herzaman contanira baglidir. o uygulama kapatilirsa kontainer otomatik kapanir. ve bizi shell e atar)
+
+   * docker container start websunucu
+
+   * docker container stop websunucu
+
+
+
+
 
