@@ -352,3 +352,11 @@ ___
 `docker logs -f container_id|ya da|container_ismi`
 
 Örnek: `docker logs -f 12a793b3fec0` (loglar oluştukça ekranda gözükecektir. Ctrl-C ile bağlantı kesilebilir)
+
+Note to Self:
+
+1. Container Temelleri :
+
+   * Her container imajinda o imajdan bir container yarattigimiz zaman varsayilan olarak calismasi icin ayarlanmis bir uygulama vardir. Bu uygulama calistigi surece container ayakta kalir. uygulama calismayi biraktiginda container da kapanir.
+
+   * 
