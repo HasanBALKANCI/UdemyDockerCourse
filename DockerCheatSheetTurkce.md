@@ -355,8 +355,41 @@ ___
 
 Note to Self:
 
-1. Container Temelleri :
+1. Container Temelleri-2 :
 
    * Her container imajinda o imajdan bir container yarattigimiz zaman varsayilan olarak calismasi icin ayarlanmis bir uygulama vardir. Bu uygulama calistigi surece container ayakta kalir. uygulama calismayi biraktiginda container da kapanir.
 
-   * 
+   * Imajlarin icinde istenilen sayida uygulama koyulabilir.
+
+   * Birden fazla uygulama olsada container create edilirken sadece tek uygulama secilebilir. Varsayilan olarak secilir. (servis olarak adlandirilir)
+
+   * Bu uygulamayla calismaya baslayan containerda daha sonra farkli uygulamada calistirilabilir.
+
+   * Container create yapilirke hangi uygulamayi calistirmasini istedigimizi belirtebiliriz. Belirtilmezse varsayilan uygulama calisir.
+
+   * names ler --name tagiyle olusturulabilir, yoks default olarak sistem kendi atart. ismin ilk kelimesi sifat ikincisi IT dunyasina hizmet etmis unlu birinin ismidir.
+
+   * calisan konteyner silinemez once stop yapilmali. yada rm -f kullanilir.
+
+
+   Commands:
+
+   * docker container run -p 80:80 ozgurozturknet/adanzyedocker
+
+   * docker container ls
+
+   * docker container logs eb4 # <container id, ilk uc harf genelde yeterli, names de yazilabilirdi bu durumda  tamami yazilmali.>
+
+   * docker container run --name denemecon ozgurozturk/adanzyedocker java app1
+
+   * docker container stop eb
+
+   * docker container run -d ozgurozturknet/adanzyedocker
+
+   * docker container rm -f 07
+
+   * docker container stop 07
+
+   * docker container rm 07 aa 50 eb 07
+
+
