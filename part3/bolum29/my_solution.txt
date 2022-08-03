@@ -1,0 +1,51 @@
+1.  - docker container ls -a
+    - docker volume ls
+    - docker image ls
+    - docker container prune
+    - docker container rm -f a 12 b 
+    - docker volume prune
+    - docker volume rm deneme1 ilkvolume
+
+2.  - (https://docs.docker.com/engine/reference/commandline/pull/)
+    - docker pull imagename 
+    - docker image pull ozgurozturknet/app1
+
+3.  - docker container run ozgurozturknet/app1 sh
+
+4.  - docker container run -d httpd:alpine sh
+    - docker container ps 
+
+5.  - docker container logs a8
+
+6.  - docker container stop 8d 38
+    - docker container rm -f a3 8d  38 vey stop ettikten sonra docker container prune
+
+7.  - docker container run -d --name websunucusu -p 80:80 ozgurozturknet/adanzyedocker sh
+    - browserdan 127.0.0.1 kontrol et
+
+8.  - docker container attach 7
+    - docker container exec -it 73 sh
+
+9.  - docker container rm -f 77
+
+10. - docker container run alpine ls 
+
+11. - docker volume create --name alistirma1
+
+12. - docker container run --name birinci -it alpine sh
+
+13. docker container run --name birinci -it -v alistirma1:/test alpine
+
+14. - docker container run --name ikinci -it -v alistirma1:/test alpine
+    - ls
+
+15. - docker container run --name ucuncu -it -v alistirma1:/test:ro alpine
+
+16. - mkdir deneme
+    - touch index.html
+
+17. - docker container run -d --name websunucusu1 -p 80:80 -v /Users/hasanbalkanci/My_GitHub/UdemyDockerCourse/part3/deneme:/usr/local/apache2/htdocs ozgurozturknet/adanzyedocker
+
+18. docker container rm -f c 9 0 51
+
+

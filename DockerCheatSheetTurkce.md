@@ -505,6 +505,8 @@ $ docker run --name some-nginx -d some-content-nginx
      - docker container run -d -p 80:80 -v /Users/hasanbalkanci/DevOps/AdanZyeDocker/kisim3/bolum28/websitesi:/usr/share/nginx/html nginx
 
      - 
+
+
    
      
 
