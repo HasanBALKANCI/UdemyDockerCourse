@@ -445,19 +445,44 @@ Note to Self:
        - docker image pull ozgurozturnet/hello-app (iki katman)
 
 4. Docker Volume:
-  * 
+  * Container gibi ayri bir structure der. Containera baglayip ayirabiliriz.
+
+  * containeri silsek bile volume ve icindeki dosyalar silinmez.
+
+  * bir volume birden fazla containera baglanabilir. Ve containerdaki dosyalara erisebilir.
+
+  * bos-dolu container baglandiginda davranis farklari vardir. 
+
+  * eger bir volume mount edildigi klasor mevcut degilse bu klasoru olusturur. Ve o anda volume icinde hangi dosyalar varsa bu klasorde de o dosyalar görulur.
+
+  * eger bir volume imaj icerisinde bulunan mevcut bir klasore mount edilirse:
+    - A: Klasör bossa o anda volume icerisinde hangi dosyalar varsa bu klasörde de o dosyalari görursunuz.
+    - B: Klasörde dosya varsa ve volume bossa klasördeki dosyalar volume kopyalanir.
+    - C: Klasörde dosya var ya da yok fakat volume'de dosyalar varsa yani volume bos degilse, volumedeki dosyalari klasörde göruruz. DIKKAT! Hem klasör hem de volumedeki dosyalar degil, sadece volumedeki dosyalar görulur.
 
   * Commands :
     - docker volume create ilkvolume
 
     - docker volume inspect ilkvolume
 
+    - docker container run  -it -v ilkvolume:/deneme3:ro centos sh
+
     - docker container run -it -v ilkvolume:/uygulama alpine sh (volume adi:/container icinde volume baglamak istedigimiz klasor, yoksa olusturur)
 
-    - 
+    - docker container run -it -v ilkvolume:/readonly:ro centos sh (raed only oldugu icin burda file olusturulamaz, ama volume bagli baska containerlarda olusturulan filelari gorebilirsin)
 
-    - 
+    - docker container run --rm -it ozgurozturknet/adanzyedocker sh
 
+    - docker volume create deneme1
+
+    - docker container run --rm -it -v deneme1:/test ozgurozturknet/adanzyedocker sh
+    
+    - cd /
+    - docker container run --rm -it -v deneme1:/usr/src/myapp ozgurozturknet/adanzyedocker sh
+    - docker container run --rm -it -v deneme1:/bosklasor alpine sh
+
+
+5. 
 
 
 
