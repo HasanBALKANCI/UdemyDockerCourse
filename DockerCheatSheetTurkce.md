@@ -444,6 +444,20 @@ Note to Self:
        - docker image pull alpine (tek katman)
        - docker image pull ozgurozturnet/hello-app (iki katman)
 
+4. Docker Volume:
+  * 
+
+  * Commands :
+    - docker volume create ilkvolume
+
+    - docker volume inspect ilkvolume
+
+    - docker container run -it -v ilkvolume:/uygulama alpine sh (volume adi:/container icinde volume baglamak istedigimiz klasor, yoksa olusturur)
+
+    - 
+
+    - 
+
 
 
 
