@@ -482,7 +482,33 @@ Note to Self:
     - docker container run --rm -it -v deneme1:/bosklasor alpine sh
 
 
-5. 
+5. Bind Mounts:
+   * Test ortaminda veya kendi bilgisyarimizda kullanilabilir
+   * Host ustundeki bir klasör ya da dosyayi container icerisine map edebiliriz. 
+   * Docker Desktop ayarlari duzenlenmeli:
+     - hardike erisim izni verilmeli
+     - https://hub.docker.com/_/nginx (kullanim bilgilerine ulasilabilir)
+       . Hosting some simple static content
+
+$ docker run --name some-nginx -v /some/content:/usr/share/nginx/html:ro -d nginx
+Alternatively, a simple Dockerfile can be used to generate a new image that includes the necessary content (which is a much cleaner solution than the bind mount above):
+
+FROM nginx
+COPY static-html-directory /usr/share/nginx/html
+Place this file in the same directory as your directory of content ("static-html-directory"), run docker build -t some-content-nginx ., then start your container:
+
+$ docker run --name some-nginx -d some-content-nginx
+   
+   Commands:
+     -  docker container run -d -p 80:80 --name ilkweb nginx
+
+     - docker container run -d -p 80:80 -v /Users/hasanbalkanci/DevOps/AdanZyeDocker/kisim3/bolum28/websitesi:/usr/share/nginx/html nginx
+
+     - 
+   
+     
+
+
 
 
 
