@@ -506,6 +506,48 @@ $ docker run --name some-nginx -d some-content-nginx
 
      - 
 
+6. Docker Network Driver
+  * Bridge, Host, Macvlan, None, Overlay
+  * Docker kuruldugu anda otomatik uc network nesnesi olusur: Bridge, Host, None
+
+  * Bridge:
+    - Varsayilan driverdir.
+    - Container create yapildigi anda ve driver belirtilmezse otomatik secilir.
+    - Birden fazla agdan birlesik tek ag olusmasini destekler.
+    - container1<--> docker0 <-->container2
+      -p 8000:80 dis dunya erisimi .. port publish dis dunyadan containera erisim icin kullanilir. -p . yada --publish
+      disdunya --> docker engine makine (ipsi192.168.1.10)(port 80)  --> docker0 (port 5000) --> container2 
+    - Bridge; otomatik Docker0 adinda sanal network interface olusturur, 172.17.0.1/16 ip adresini ona verir. Default gatewayde bu docker0 dir, yani paketler buraya teslim edilir ve burdan ana network interface teslim edilir. Yeni olusturulan containerlar sirasiyla 172.17.0.2 vs diye ip alirlar. 
+    -  ayni bridge teki containerlar birbiriyle docker0 aracigiyla haberlesebilir. ping 172.17.0.3.
+    - bridge disindan dis dunyadan containerin icindeki uygulamaya erismek icin pot tanimlamak gerekir. -p 80:80 (-p host(engine makine):container)
+    - default olarak portlar TCP protokolunde acilir. UDP kullanmak icin -p 53:53/udp
+  * Host:
+    - Her sistemde host driver ile olusturulmus "Host" adinda bir network bulunur.
+    - Bu networke bagli container da network izolasyonu olmaz. Sanki o host uzerinde calisan bir prosedd gibi host'un ag kaynaklarini kullanir.
+    - 
+  
+  * MacVlan:
+
+    - Bo driver ile olusturulan network objeleri sayesinde containerlar fiziksel aglara kendi MAC adreslerine sahip olurlar. Birer fiziksel ag adaptorune sahipmiscesine aga baglanabilirler.
+
+  * None
+    - Container a hicbir sekilde ag erisimi almamasi istenirse kullanilir.
+  
+  * Overlay
+    - Ayri/Farkli hostlar uzerindeki containerlarin ayni agda calisiyormus gibi davranmasi istendiginde kullanilir.
+
+  * Commands:
+    - docker info
+    - docker network ls
+    - docker network inspect bridge
+    - docker exec -it containerid
+    - ifconfig
+    - pin 8.8.8.8
+    - ctrl + p + q (kontainerla baglantiyi keser ama kontainer kapanmaz)
+    - docker container run -it --name deneme1 --net host ozgurozturknet/adanzyedocker sh
+
+
+
 
    
      
