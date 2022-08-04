@@ -507,6 +507,7 @@ $ docker run --name some-nginx -d some-content-nginx
      - 
 
 6. Docker Network Driver
+
   * Bridge, Host, Macvlan, None, Overlay
   * Docker kuruldugu anda otomatik uc network nesnesi olusur: Bridge, Host, None
 
@@ -521,6 +522,13 @@ $ docker run --name some-nginx -d some-content-nginx
     -  ayni bridge teki containerlar birbiriyle docker0 aracigiyla haberlesebilir. ping 172.17.0.3.
     - bridge disindan dis dunyadan containerin icindeki uygulamaya erismek icin pot tanimlamak gerekir. -p 80:80 (-p host(engine makine):container)
     - default olarak portlar TCP protokolunde acilir. UDP kullanmak icin -p 53:53/udp
+
+    - Kullanici tanimli Bridge:
+      . Containerlar arasi network izolasyonu saglar
+      . Varsayilan disinda IP araliklari tanimlanabilir
+      . Kullanici tanimli bridge network'e bagli containerlar birbirleriyle isimler uzerinden haberlesebilirler. DNS cozumlemesi saglar.
+      . Containerlar calisir durumdayken de kullanici tanimli bridge networklere baglanip, baglantiyi kesebilirler.
+      . ip adres blogu 172.18.0.0/16 olur. 18,19,20.. olarak devam eder.
   * Host:
     - Her sistemde host driver ile olusturulmus "Host" adinda bir network bulunur.
     - Bu networke bagli container da network izolasyonu olmaz. Sanki o host uzerinde calisan bir prosedd gibi host'un ag kaynaklarini kullanir.
@@ -545,6 +553,10 @@ $ docker run --name some-nginx -d some-content-nginx
     - pin 8.8.8.8
     - ctrl + p + q (kontainerla baglantiyi keser ama kontainer kapanmaz)
     - docker container run -it --name deneme1 --net host ozgurozturknet/adanzyedocker sh
+    - docker network create kopru1 (kullanici tanimli bridge network)
+    - docker network create --driver host --name myhost
+    - docker network ls
+    - docker attach websunucu
 
 
 
