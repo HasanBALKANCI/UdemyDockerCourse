@@ -561,6 +561,17 @@ $ docker run --name some-nginx -d some-content-nginx
     - docker network connect kopru2 database (kullanici tanimli networke calisan bir containeri baglama, default bridge de bu islem olmaz, boylece container birsen fazla bridge e baglanmis oldu)
     - docker network rm kopru2
 
+7. Loging:
+  * Docker Container Log lara erisimi 
+
+  * standart input-output-errror
+    - stdin stdout stderr
+  
+  Commands:
+    - docker logs containername
+    - 
+
+
 
 
 

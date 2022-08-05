@@ -45,6 +45,7 @@
     - touch index.html
 
 17. - docker container run -d --name websunucusu1 -p 80:80 -v /Users/hasanbalkanci/My_GitHub/UdemyDockerCourse/part3/deneme:/usr/local/apache2/htdocs ozgurozturknet/adanzyedocker
+    - docker run -d --rm --name my-apache-app -p 80:80 -v $(PWD)/deneme:/usr/local/apache2/htdocs/ httpd
 
 18. docker container rm -f c 9 0 51
 
