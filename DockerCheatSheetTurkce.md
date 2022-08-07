@@ -608,7 +608,16 @@ $ docker run --name some-nginx -d some-content-nginx
 
       - docker login
       - docker logout
-      - 
+      - docker image build -t hasan/merhaba -f filename . (Dockerfile ise gerek yok)(. onemli tum dosyalari file lari bu klasorde ara)
+      - docker image build -t hasan/merhaba . (docker file in oldugu dosyada calistirilacak, my app bir alt klasor)
+      
+      - docker image history hasan/udemy
+
+      - docker image push hasan/udemy:1.0.0
+
+      
+
+
 
 
 
