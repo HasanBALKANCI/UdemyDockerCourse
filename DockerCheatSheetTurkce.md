@@ -585,15 +585,30 @@ $ docker run --name some-nginx -d some-content-nginx
     resmi olanlar / tek icerir /ubuntu
     gcr.io/google-containers/busybox:latest
     docker.io/library/ubuntu:latest
+    * ayni imagee birden fazla tag atanabilir. 5.12.3   5.7 fakat ayni ID ye sahip olur.
+
+    * 
 
     * Docker Hub
       - docker hub signin
-      - explore, plugin, containers (you can get images from here), 
+      - explore, plugin, containers (you can get images from here), Repositories, Organizations, Get Help
 
-
+    *  Dockerfile
+      - FROM imaj:tag
+      - RUN apt-get update (komut calisir)
+      - WORKDIR kalasor_lokasyony (cd, yoksa olusturur)
+      - COPY (kopyalama)
+      - EXPOSE 80/tcp (olusturulacak containerin hangi portan erisilecegini belirler)
+      - CMD
+      - HEALTHCHECK 
+      - 
 
     * Commands:
       - docker image pull ozgurozturknet/adanzyedocker
+
+      - docker login
+      - docker logout
+      - 
 
 
 
