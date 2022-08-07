@@ -569,7 +569,32 @@ $ docker run --name some-nginx -d some-content-nginx
   
   Commands:
     - docker logs containername
-    - 
+    -
+8.  Docker Image Naming and Tag:
+    * Image uygulamanin paketlenmis hali. Containerin create yapildigi temel yapi.
+
+    * Public image registiry : docker hub(default)
+
+    * imageid --> uniq, 
+
+    * image tagler:
+      docker.io          /ozgurozturknet/adanzyedocker:latest (default, her zaman icin en guncel olmayabilir)
+    registiry url (hide)/repository                   : tag (version)
+
+    resmi olmayanlar cift / / icerir 
+    resmi olanlar / tek icerir /ubuntu
+    gcr.io/google-containers/busybox:latest
+    docker.io/library/ubuntu:latest
+
+    * Docker Hub
+      - docker hub signin
+      - explore, plugin, containers (you can get images from here), 
+
+
+
+    * Commands:
+      - docker image pull ozgurozturknet/adanzyedocker
+
 
 
 
