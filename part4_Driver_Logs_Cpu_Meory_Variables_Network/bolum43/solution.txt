@@ -27,6 +27,6 @@
 11.   docker container run --name websrv -d --net alistirma-agi --cpus="2" -p 80:80 --env-file ./env.list 
 ozgurozturknet/webkayit
 
-12.    docker container run -d --net alistirma-agi --memory=1g --name mysqldb -e ./envmysql.list ozgurozturknet/webdb
+12.    docker container run -d --net alistirma-agi --memory=1g --name mysqldb -env-file ./envmysql.list ozgurozturknet/webdb
 
 13.     
