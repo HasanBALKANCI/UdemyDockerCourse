@@ -1,0 +1,6 @@
+1.  docker container prune
+    docker container rm -f 
+    docker network rm 
+    docker volume rm
+
+2. 
