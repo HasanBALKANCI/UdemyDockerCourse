@@ -615,6 +615,15 @@ $ docker run --name some-nginx -d some-content-nginx
 
       - docker image push hasan/udemy:1.0.0
 
+      - ./test.sh
+      - ./test.sh & (test sh arka planda calisirken terminali kullanabiliriz)
+      - cat abc.txt | greb 3 (| soldaki ciktiyi sagdaki komuta girdi yapar)
+      - ; ayni satirda birden fazla komut calistirma
+      - && kendinden onceki dogruysa calisir. Arkadas sen varsan ben de varim, sen yoksan ben de yokum.
+      - || kendisinden onceki komut dogruysa sonraki komutu calistirma. Sen varsan ben yokum. Dusman.
+
+
+
       
 
 
