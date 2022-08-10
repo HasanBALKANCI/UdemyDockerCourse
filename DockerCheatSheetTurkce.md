@@ -621,6 +621,52 @@ $ docker run --name some-nginx -d some-content-nginx
       - ; ayni satirda birden fazla komut calistirma
       - && kendinden onceki dogruysa calisir. Arkadas sen varsan ben de varim, sen yoksan ben de yokum.
       - || kendisinden onceki komut dogruysa sonraki komutu calistirma. Sen varsan ben yokum. Dusman.
+      - HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 CMD curl -f http://localhost/ || exit 1
+      - docker container run -d -p 80:80 --name d2 -e KULLANICI="Hasan B" awsdevopshasan/hello-dock
+9. ADD COPY
+  * Add uzak bir lokasyondanda dosya kopyalamamizi saglar, ayrica sikistirilmis dosyalari unzip yaparak kopyalar. Fakat uzaktaki dosyayi kopyalarken unzip yapmaz, sadece bulundugu klasordeki dosyayi add yaparken unzip yapar.
+
+  * ENTYPOINT CMD 
+  CMD container olustugunda CMD ile belirtilen varsayilani calistir. Ama containeri calistirirken sonunda belirttigimiz komutu calisturabiliriz, runtime da komutu degistirebiliriz.
+  ENTRYPOINT run time da degistirilemez.
+  Muhakkak imagede bulunmasi gerekir. 
+  Ikisi birlikte de kullanilabilir. Bu durumda ENTRYPOINT calisir CMD komutu parametre olarak alinir.
+
+9. Multi Stage Build:
+
+* Bir programi kaynak kodlarindan compile edip olusturabilmek icin SDK toollarin yiklenmesi gerekir. Fakat compile ettikten sonra artik SDK gerek yoktur bunun container icinden cikartarak 
+containeri daha effektif hale getiririz. Sadece run yapacak kod bizim icin yeterlidir.Buna Multi Stage Build denir. 
+
+* Multi-satge build
+  - FROM mcr.microsoft.com/java/jdk:8-zulu-alpine AS derleyici
+  - docker image build -t javason .
+  - docker image build -t x1 --build-arg VERSION=3.8.1 .
+  - 
+
+10. BUILD & ARG
+   * $docker image build -t x1 --build-arg VERSION=3.7.1 .
+   - docker image build -t x1 --build-arg VERSION=3.8.1 .
+   - sadece image olusturma asmasinda ARG degiskenine erisilebilir, container icinden erisilemez, bunun icin ENV kullaniyorduk. Tek bir dockerfile kullanirken cok farkli imageler olusturmayi saglar.
+
+11. Docker Commit
+    * image olusturmak icin kullanabilecegimiz farkli bir yontem.
+    * containerdan image olusturma
+      - docker commit -c 'CMD ["java", "uygulama"]' con1 ozgurozturknet/con1:ikinci
+
+12. Docker Save - Load
+    * internet erisimi olmadan kaydettigimix bir image dosyasini kullanabiliriz. usb ye vetya sistemimize yukleyebiliriz.
+    - docker save ozgurozturknet/con1:latest -o con1imaj.tar
+    - docker load -i con1imaj.tar
+
+13. Docker Hub Olusturma
+    * Kendi sirketimizin Hub ini kendi ic networkumuzde tutabiliriz.
+    * Docker Registry (ucretsiz), tets ortamlari icin kullanilabilir
+    - docker pull registry
+    - docker container run -d -p 5000:5000 --restart always --name registry registry
+    - docker container run -d -p 5000:5000 --restart unless-stoped --name registry registry
+
+
+
 
 
 
