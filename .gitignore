@@ -1,4 +1,5 @@
 *.docker
+*.tar
 
 *.DS_Store
 *.log
