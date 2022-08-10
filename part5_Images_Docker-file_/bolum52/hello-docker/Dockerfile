@@ -6,23 +6,21 @@ FROM nginx:latest
 
 # label ile de key value pair olarak bu imajla ilgili bilgileri giriyoruz. her iki talimat da imajın içindeki sistemle alakalı değil.
 # her ikisi de imajın metadatasında saklanıyor. imajla alakali bilgiler. 
-LABEL maintainer="Ozgur Ozturk @ozgurozturknet"
-LABEL version="1.0"
-LABEL name="hello-docker"
+LABEL maintainer="Ozgur Ozturk @awsdevopshasan" version="1.0" name="hello-docker"
 
 # bir adet env variable tanımlıyoruz. Daha sonra bunu runtime'da değiştireceğiz
-ENV KULLANICI="Dunyali"
+ENV KULLANICI="Hasan"
 
 # nginx debian-slim imajı baz alınarak oluşturulmuştur.
 # bu imajda geriye doğru uyumluluk sorunları var ve o nedenle update olmuyor. 
 #Bu url'leri sources.list'e ekleyerek update olabilmesini sağlıyoruz
-RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main" > /etc/apt/sources.list
+#RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main" > /etc/apt/sources.list
 
 # Uygulama depolarından mevcut paketlerin en son listesini çekip güncelliyoruz. 
-RUN apt-get update
+RUN apt-get update && apt-get install curl -y
 
 # debian-slim'de bir çok tool mevcut değil. Bizim curl kullanmamız gerektiği için curl kuruyoruz
-RUN apt-get install curl -y
+# RUN apt-get install curl -y
 
 # nginx web sayfalarını /usr/share/nginx/html folder'ında barındırıyor. O nedenle bu folder'a geçiyoruz
 WORKDIR /usr/share/nginx/html
@@ -38,4 +36,6 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 CMD curl 
 # Kullanici kelimesini $KULLANICI env variable'ının değeriyle Hostname kelimesini de $HOSTNAME ile değiştiriyor ve 
 # dosyanın içeriğini index.html'e adlı yeni bir dosyaya yazıyoruz.
 # ardından nginx daemon'ı çalıştırıyoruz
-CMD sed -e s/Kullanici/"$KULLANICI"/ Hello_docker.html > index1.html && sed -e s/Hostname/"$HOSTNAME"/ index1.html > index.html ; rm index1.html Hello_docker.html; nginx -g 'daemon off;'
+CMD sed -e s/Kullanici/"$KULLANICI"/ Hello_docker.html > \
+index1.html && sed -e s/Hostname/"$HOSTNAME"/ index1.html > \
+index.html ; rm index1.html Hello_docker.html; nginx -g 'daemon off;'
