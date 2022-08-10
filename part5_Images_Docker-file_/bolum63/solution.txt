@@ -1,0 +1,66 @@
+1.  docker container prune
+    docker container rm -f name
+
+2.  docker logout
+    docker login
+
+3.  docker image tag ozgurozturknet/merhaba:latest aytitechegitim/merhaba:latest
+    docker push aytitechegitim/merhaba:latest
+    docker image prune
+
+4.  docker repository 
+
+5.  docker pull centos:latest
+    docker pull ubuntu:18.04
+    docker pull nginx:1lpine
+
+6.  docker image tag ubuntu:18.04 awsdevopshasan/alistirma:ubuntu
+    docker push awsdevopshasan/alistirma:ubuntu
+
+7.  FROM nginx:latest
+    LABEL maintainer="awsdevopshasan @swhsnblknc"
+    ENV KULLANICI="Hasan"
+    ARG RENK
+    RUN apt-get update && apt-get -y install curl htop wget
+    WORKDIR /gecici
+    ADD https://wordpress.org/latest.tar.gz .
+    WORKDIR /usr/share/nginx/html
+    COPY html/${RENK} .
+    HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD curl -f https://localhost/ || exit 1
+    CMD ["./script.sh"]
+
+8.  docker image build -t awsdevopshasan/kirmizi --build-arg RENK=kirmizi .
+    docker image build -t awsdevopshasan/sari --build-arg RENK=sari .
+
+9.  docker run -d -p 80:80 --name kirmizi awsdevopshasan/alistirma:kirmizi 
+
+10. docker run -d -p 8080:80 --name sari -e KULLANICI=Deneme awsdevopshasan/sari
+
+11. docker container stop sari kirmizi
+    docker container prune
+
+12. FROM mcr.microsoft.com/java/jdk:8-zulu-alpine AS birinci
+    COPY /source /usr/src/uygulama
+    WORKDIR /usr/src/uygulama
+    CMD javac uygulama.java
+
+    FROM mcr.microsoft.com/java/jdk:8-zulu-alpine 
+    WORKDIR /uygulama
+    COPY --from=birinci /usr/src/uygulama .
+    CMD java uygulama
+
+13. docker image build - t awsdevopshasan/alistirma:java -f Dockerfile.multi .
+
+14. docker run awsdevopshasan/alistirma:java
+
+15. docker push awsdevopshasan/alistirma:java
+
+16. docker -d -p 5000:5000 --restart always --name registry registry
+
+17. docker image tag awsdevopshasan/alistirma:java 127.0.0.1:5000/java:latest
+    docker image tag awsdevopshasan/kirmizi 127.0.0.1:5000/kirmizi:latest
+
+    docker push 127.0.0.1:5000/kirmizi:latest
+
+    chromedan
+    127.0.0.1/5000/v2/_catalog
